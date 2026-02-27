@@ -10,7 +10,7 @@ public class AboutForm : Form
     public AboutForm(AppSettings settings, AudioDeviceService audioService)
     {
         Text = "About Audio Switcher";
-        Size = new Size(420, 400);
+        Size = new Size(420, 430);
         StartPosition = FormStartPosition.CenterScreen;
         FormBorderStyle = FormBorderStyle.FixedDialog;
         MaximizeBox = false;
@@ -75,10 +75,32 @@ public class AboutForm : Form
             BackColor = Color.Transparent
         });
 
+        // ── GitHub link ────────────────────────────────────────
+        var ghLink = new LinkLabel
+        {
+            Text = "github.com/junderw52/AudioSwitcher",
+            Font = new Font("Segoe UI", 8.5f),
+            ForeColor = Color.FromArgb(100, 140, 255),
+            LinkColor = Color.FromArgb(100, 140, 255),
+            ActiveLinkColor = Color.FromArgb(140, 170, 255),
+            TextAlign = ContentAlignment.MiddleCenter,
+            Location = new Point(0, 234),
+            Size = new Size(420, 18),
+            BackColor = Color.Transparent
+        };
+        ghLink.LinkClicked += (_, _) =>
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "https://github.com/junderw52/AudioSwitcher",
+                UseShellExecute = true
+            });
+        };
+        Controls.Add(ghLink);
         // ── Divider ────────────────────────────────────────────
         var divider = new Panel
         {
-            Location = new Point(40, 242),
+            Location = new Point(40, 262),
             Size = new Size(340, 1),
             BackColor = Color.FromArgb(60, 60, 65)
         };
@@ -102,7 +124,7 @@ public class AboutForm : Form
             Font = new Font("Segoe UI", 9f),
             ForeColor = Color.FromArgb(160, 160, 160),
             TextAlign = ContentAlignment.TopCenter,
-            Location = new Point(20, 252),
+            Location = new Point(20, 272),
             Size = new Size(380, 60),
             BackColor = Color.Transparent
         });
@@ -113,7 +135,7 @@ public class AboutForm : Form
             Text = "Close",
             Font = new Font("Segoe UI", 9f),
             Size = new Size(90, 32),
-            Location = new Point(165, 320),
+            Location = new Point(165, 340),
             FlatStyle = FlatStyle.Flat,
             ForeColor = Color.White,
             BackColor = Color.FromArgb(55, 55, 60),
